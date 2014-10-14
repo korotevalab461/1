@@ -5,6 +5,7 @@ import random, math
 WIDTH = 600
 HEIGHT = 400
 PAD_WIDTH = 8
+PAD_HEIGHT = 80
 
 def draw(c):
     global score1, score2
@@ -17,6 +18,14 @@ def draw(c):
     c.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, "White")
     c.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
 
+    # draw paddles
+    c.draw_line([PAD_WIDTH/2, paddle1_pos],
+                [PAD_WIDTH/2, paddle1_pos+PAD_HEIGHT],
+                PAD_WIDTH, "White")
+    c.draw_line([WIDTH - PAD_WIDTH/2, paddle2_pos],
+                [WIDTH- PAD_WIDTH/2, paddle2_pos+PAD_HEIGHT],
+                PAD_WIDTH, "White")
+
 def keydown(key):
     pass
 
@@ -25,8 +34,11 @@ def keyup(key):
 
 def restart():
     global score1, score2
+    global paddle1_pos, paddle2_pos
 
     score1, score2 = 0, 0
+
+    paddle1_pos, paddle2_pos = (HEIGHT - PAD_HEIGHT)/2, (HEIGHT - PAD_HEIGHT)/2
 
 
 # create frame
