@@ -64,7 +64,14 @@ def keydown(key):
 
 def keyup(key):
     global paddle1_vel, paddle2_vel
-    pass
+    if key == simplegui.KEY_MAP["s"]:
+        paddle1_vel = 0
+    if key == simplegui.KEY_MAP["w"]:
+        paddle1_vel = 0
+    if key == simplegui.KEY_MAP["down"]:
+        paddle2_vel = 0
+    if key == simplegui.KEY_MAP["up"]:
+        paddle2_vel = 0
 
 def restart():
     global score1, score2
