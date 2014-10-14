@@ -32,10 +32,11 @@ def draw(c):
     c.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, "White")
     c.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
 
-
     # update paddle's vertical position, keep paddle on the screen
-    paddle1_pos += paddle1_vel
-    paddle2_pos += paddle2_vel
+    if 0 <= (paddle1_pos + paddle1_vel) <= HEIGHT - PAD_HEIGHT:
+        paddle1_pos += paddle1_vel
+    if 0 <= (paddle2_pos + paddle2_vel) <= HEIGHT - PAD_HEIGHT:
+        paddle2_pos += paddle2_vel
 
     # draw paddles
     c.draw_line([PAD_WIDTH/2, paddle1_pos],
