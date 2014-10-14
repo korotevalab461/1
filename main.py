@@ -8,6 +8,7 @@ PAD_WIDTH = 8
 PAD_HEIGHT = 80
 BALL_RADIUS = 20
 PAD_VEL = 3
+BALL_ACC = 1.1
 
 # helper function that spawns a ball by updating the ball's position vector
 # and velocity vector if right is True, the ball's velocity is upper right, else upper left
@@ -47,6 +48,18 @@ def draw(c):
                 PAD_WIDTH, "White")
 
     # update ball
+    if ball_pos[0] <= BALL_RADIUS + PAD_WIDTH:
+        if paddle1_pos <= ball_pos[1] <= (paddle1_pos+PAD_HEIGHT):
+            ball_vel[0] = - BALL_ACC * ball_vel[0]
+        else:
+            ball_init(True)
+            score2 += 1
+    if ball_pos[0] >= (WIDTH - BALL_RADIUS - PAD_WIDTH):
+        if paddle2_pos <= ball_pos[1] <= (paddle2_pos+PAD_HEIGHT):
+            ball_vel[0] = - BALL_ACC * ball_vel[0]
+        else:
+            ball_init(False)
+            score1 += 1
     if ball_pos[1] <= BALL_RADIUS:
         ball_vel[1] = - ball_vel[1]
     if ball_pos[1] >= (HEIGHT - BALL_RADIUS):
