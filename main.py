@@ -14,6 +14,10 @@ def ball_init(right):
     global ball_pos, ball_vel # these are vectors stored as lists
 
     ball_pos = [WIDTH/2, HEIGHT/2]
+    if right == True:
+        ball_vel = [random.randrange(2, 4),-random.randrange(1, 3)]
+    else:
+        ball_vel = [-random.randrange(2, 4),-random.randrange(1, 3)]
 
 def draw(c):
     global score1, score2
@@ -34,6 +38,9 @@ def draw(c):
                 [WIDTH- PAD_WIDTH/2, paddle2_pos+PAD_HEIGHT],
                 PAD_WIDTH, "White")
 
+    # update ball
+    ball_pos[0] += ball_vel[0]
+    ball_pos[1] += ball_vel[1]
     # draw ball and scores
     c.draw_circle(ball_pos, BALL_RADIUS, 0.1, "White", "White")
 
