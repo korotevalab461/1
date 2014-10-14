@@ -47,8 +47,13 @@ def draw(c):
                 PAD_WIDTH, "White")
 
     # update ball
+    if ball_pos[1] <= BALL_RADIUS:
+        ball_vel[1] = - ball_vel[1]
+    if ball_pos[1] >= (HEIGHT - BALL_RADIUS):
+        ball_vel[1] = - ball_vel[1]
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
+
     # draw ball and scores
     c.draw_circle(ball_pos, BALL_RADIUS, 0.1, "White", "White")
 
