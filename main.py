@@ -6,6 +6,14 @@ WIDTH = 600
 HEIGHT = 400
 PAD_WIDTH = 8
 PAD_HEIGHT = 80
+BALL_RADIUS = 20
+
+# helper function that spawns a ball by updating the ball's position vector
+# and velocity vector if right is True, the ball's velocity is upper right, else upper left
+def ball_init(right):
+    global ball_pos, ball_vel # these are vectors stored as lists
+
+    ball_pos = [WIDTH/2, HEIGHT/2]
 
 def draw(c):
     global score1, score2
@@ -26,6 +34,9 @@ def draw(c):
                 [WIDTH- PAD_WIDTH/2, paddle2_pos+PAD_HEIGHT],
                 PAD_WIDTH, "White")
 
+    # draw ball and scores
+    c.draw_circle(ball_pos, BALL_RADIUS, 0.1, "White", "White")
+
 def keydown(key):
     pass
 
@@ -35,10 +46,14 @@ def keyup(key):
 def restart():
     global score1, score2
     global paddle1_pos, paddle2_pos
+    global side
 
     score1, score2 = 0, 0
 
     paddle1_pos, paddle2_pos = (HEIGHT - PAD_HEIGHT)/2, (HEIGHT - PAD_HEIGHT)/2
+
+    side = True
+    ball_init(side)
 
 
 # create frame
