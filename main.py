@@ -7,6 +7,7 @@ HEIGHT = 400
 PAD_WIDTH = 8
 PAD_HEIGHT = 80
 BALL_RADIUS = 20
+PAD_VEL = 3
 
 # helper function that spawns a ball by updating the ball's position vector
 # and velocity vector if right is True, the ball's velocity is upper right, else upper left
@@ -45,9 +46,18 @@ def draw(c):
     c.draw_circle(ball_pos, BALL_RADIUS, 0.1, "White", "White")
 
 def keydown(key):
-    pass
+    global paddle1_vel, paddle2_vel
+    if key == simplegui.KEY_MAP["s"]:
+        paddle1_vel = PAD_VEL
+    if key == simplegui.KEY_MAP["w"]:
+        paddle1_vel = -PAD_VEL
+    if key == simplegui.KEY_MAP["down"]:
+        paddle2_vel = PAD_VEL
+    if key == simplegui.KEY_MAP["up"]:
+        paddle2_vel = -PAD_VEL
 
 def keyup(key):
+    global paddle1_vel, paddle2_vel
     pass
 
 def restart():
