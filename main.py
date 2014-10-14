@@ -4,12 +4,18 @@ import random, math
 # initialize globals - pos and vel encode vertical info for paddles
 WIDTH = 600
 HEIGHT = 400
+PAD_WIDTH = 8
 
 def draw(c):
     global score1, score2
 
     c.draw_text(str(score1), (185, 60), 40, "White")
     c.draw_text(str(score2), (400, 60), 40, "White")
+
+    # draw mid line and gutters
+    c.draw_line([WIDTH / 2, 0],[WIDTH / 2, HEIGHT], 1, "White")
+    c.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, "White")
+    c.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
 
 def keydown(key):
     pass
