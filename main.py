@@ -6,13 +6,13 @@ WIDTH = 600
 HEIGHT = 400
 
 
-def draw():
+def draw(c):
     pass
 
-def keydown():
+def keydown(key):
     pass
 
-def keyup():
+def keyup(key):
     pass
 
 def restart():
