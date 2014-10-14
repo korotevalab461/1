@@ -22,6 +22,7 @@ def ball_init(right):
 
 def draw(c):
     global score1, score2
+    global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel
 
     c.draw_text(str(score1), (185, 60), 40, "White")
     c.draw_text(str(score2), (400, 60), 40, "White")
@@ -30,6 +31,11 @@ def draw(c):
     c.draw_line([WIDTH / 2, 0],[WIDTH / 2, HEIGHT], 1, "White")
     c.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, "White")
     c.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
+
+
+    # update paddle's vertical position, keep paddle on the screen
+    paddle1_pos += paddle1_vel
+    paddle2_pos += paddle2_vel
 
     # draw paddles
     c.draw_line([PAD_WIDTH/2, paddle1_pos],
@@ -64,10 +70,13 @@ def restart():
     global score1, score2
     global paddle1_pos, paddle2_pos
     global side
+    global paddle1_vel, paddle2_vel
 
     score1, score2 = 0, 0
 
     paddle1_pos, paddle2_pos = (HEIGHT - PAD_HEIGHT)/2, (HEIGHT - PAD_HEIGHT)/2
+
+    paddle1_vel = paddle2_vel = 0
 
     side = True
     ball_init(side)
